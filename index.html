@@ -1,0 +1,928 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#f6f8f7" />
+    <meta
+      name="description"
+      content="Viora is a wellness technology project exploring approachable health insights through DIY sensors and thoughtful software."
+    />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./src/style.css" />
+    <title>Viora - Everyday health, understood</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            colors: {
+              ink: "#142c2a",
+              muted: "#637370",
+              mint: "#dff2e9",
+              leaf: "#1c8067",
+              paper: "#f6f8f7",
+              line: "#e4ebe7",
+            },
+            fontFamily: {
+              sans: ["DM Sans", "sans-serif"],
+              display: ["Manrope", "sans-serif"],
+            },
+            boxShadow: {
+              soft: "0 24px 80px rgba(27, 67, 57, .10)",
+              card: "0 12px 38px rgba(27, 67, 57, .07)",
+            },
+          },
+        },
+      };
+    </script>
+  </head>
+  <body class="bg-paper font-sans text-ink antialiased">
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
+
+    <header class="relative z-20">
+      <nav
+        class="mx-auto flex max-w-7xl items-center justify-between px-5 py-5 sm:px-8 lg:px-12"
+        aria-label="Main navigation"
+      >
+        <a
+          href="#top"
+          class="flex items-center gap-2.5"
+          aria-label="Viora home"
+        >
+          <span
+            class="brand-mark grid h-10 w-10 place-items-center rounded-2xl bg-ink text-white shadow-card"
+          >
+            <svg
+              viewBox="0 0 32 32"
+              class="h-6 w-6"
+              fill="none"
+              aria-hidden="true"
+            >
+              <path
+                d="M5 17h5l3-8 5.2 15 3.1-8H27"
+                stroke="currentColor"
+                stroke-width="2.3"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+              <circle
+                cx="16"
+                cy="16"
+                r="14"
+                stroke="currentColor"
+                stroke-opacity=".2"
+              />
+            </svg>
+          </span>
+          <span
+            class="font-display text-[21px] font-extrabold tracking-[-.06em]"
+            >viora<span class="text-leaf">.</span></span
+          >
+        </a>
+
+        <div
+          class="hidden items-center gap-8 text-sm font-semibold text-muted md:flex"
+        >
+          <a class="nav-link transition hover:text-ink" href="#approach"
+            >Our approach</a
+          >
+          <a class="nav-link transition hover:text-ink" href="#devices"
+            >The devices</a
+          >
+          <a class="nav-link transition hover:text-ink" href="#impact"
+            >Why Viora</a
+          >
+        </div>
+        <a
+          href="#devices"
+          class="hidden items-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white transition hover:-translate-y-0.5 hover:bg-leaf md:inline-flex"
+          >Explore the project <span aria-hidden="true">↗</span></a
+        >
+        <button
+          id="menu-toggle"
+          class="grid h-11 w-11 place-items-center rounded-full border border-line bg-white text-ink md:hidden"
+          aria-label="Open navigation"
+          aria-expanded="false"
+          aria-controls="mobile-menu"
+        >
+          <svg
+            id="menu-icon"
+            class="h-5 w-5"
+            viewBox="0 0 24 24"
+            fill="none"
+            aria-hidden="true"
+          >
+            <path
+              d="M4 7h16M4 12h16M4 17h16"
+              stroke="currentColor"
+              stroke-width="1.8"
+              stroke-linecap="round"
+            />
+          </svg>
+        </button>
+      </nav>
+      <div
+        id="mobile-menu"
+        class="mx-5 hidden rounded-3xl border border-line bg-white p-3 shadow-card md:hidden"
+      >
+        <a
+          class="block rounded-2xl px-4 py-3 text-sm font-semibold text-muted hover:bg-paper"
+          href="#approach"
+          >Our approach</a
+        >
+        <a
+          class="block rounded-2xl px-4 py-3 text-sm font-semibold text-muted hover:bg-paper"
+          href="#devices"
+          >The devices</a
+        >
+        <a
+          class="block rounded-2xl px-4 py-3 text-sm font-semibold text-muted hover:bg-paper"
+          href="#impact"
+          >Why Viora</a
+        >
+      </div>
+    </header>
+
+    <main id="top">
+      <section
+        class="relative mx-auto grid max-w-7xl items-center gap-12 px-5 pb-20 pt-12 sm:px-8 sm:pb-24 sm:pt-16 lg:grid-cols-[1.02fr_.98fr] lg:gap-10 lg:px-12 lg:pb-32 lg:pt-20"
+      >
+        <div class="relative z-10 max-w-2xl">
+          <div
+            class="mb-7 inline-flex items-center gap-2 rounded-full border border-[#dce9e2] bg-white/80 px-3.5 py-2 text-xs font-bold uppercase tracking-[.12em] text-leaf shadow-sm"
+          >
+            <span class="h-2 w-2 rounded-full bg-leaf"></span> An independent
+            wellness project
+          </div>
+          <h1
+            class="font-display text-[clamp(3.2rem,7vw,5.8rem)] font-semibold leading-[.99] tracking-[-.075em] text-ink"
+          >
+            Everyday health,<br /><span class="serif-accent">understood.</span>
+          </h1>
+          <p
+            class="mt-7 max-w-xl text-lg leading-8 text-muted sm:text-xl sm:leading-9"
+          >
+            We’re exploring how simple sensors and thoughtful software can make
+            everyday wellness information easier to understand.
+          </p>
+          <div class="mt-9 flex flex-col gap-3 sm:flex-row">
+            <a
+              href="#approach"
+              class="inline-flex items-center justify-center gap-3 rounded-full bg-ink px-6 py-4 text-sm font-bold text-white shadow-card transition hover:-translate-y-0.5 hover:bg-leaf"
+              >Discover Viora
+              <span class="text-lg leading-none" aria-hidden="true">↓</span></a
+            >
+            <a
+              href="#devices"
+              class="inline-flex items-center justify-center gap-3 rounded-full border border-line bg-white px-6 py-4 text-sm font-bold text-ink transition hover:border-leaf"
+              >See the prototypes <span aria-hidden="true">↗</span></a
+            >
+          </div>
+          <div class="mt-10 flex items-center gap-3 text-sm text-muted">
+            <span class="flex -space-x-2"
+              ><i class="mini-dot bg-[#d8eee2]"></i
+              ><i class="mini-dot bg-[#bbded0]"></i
+              ><i class="mini-dot bg-[#96cbb8]"></i></span
+            ><span>Curiosity-led. Built to learn.</span>
+          </div>
+        </div>
+
+        <div class="hero-art relative mx-auto w-full max-w-[580px] lg:ml-auto">
+          <div class="hero-orbit orbit-a"></div>
+          <div class="hero-orbit orbit-b"></div>
+          <div
+            class="m-5 hero-card relative z-10 overflow-hidden rounded-[2rem] border border-white/80 bg-white p-5 shadow-soft sm:rounded-[2.5rem] sm:p-7"
+          >
+            <div class="flex items-start justify-between">
+              <div>
+                <p
+                  class="text-xs font-bold uppercase tracking-[.15em] text-muted"
+                >
+                  Wellness, in context
+                </p>
+                <p class="mt-1 font-display text-xl font-bold tracking-tight">
+                  A clearer picture
+                </p>
+              </div>
+              <span
+                class="rounded-full bg-mint px-3 py-1.5 text-[11px] font-bold text-leaf"
+                >CONCEPT</span
+              >
+            </div>
+            <div
+              class="relative mt-7 rounded-[1.5rem] bg-[#f3f8f5] px-4 pb-4 pt-5 sm:px-6 sm:pb-5"
+            >
+              <div
+                class="flex items-center justify-between text-xs font-semibold text-muted"
+              >
+                <span>Illustrative daily pattern</span
+                ><span>Not live data</span>
+              </div>
+              <div
+                class="chart-grid relative mt-4 h-36 overflow-hidden sm:h-44"
+              >
+                <div class="chart-line line-one"></div>
+                <div class="chart-line line-two"></div>
+                <div class="chart-line line-three"></div>
+                <svg
+                  class="absolute inset-0 h-full w-full"
+                  viewBox="0 0 520 170"
+                  preserveAspectRatio="none"
+                  aria-label="Illustrative wellness trend chart"
+                >
+                  <defs>
+                    <linearGradient id="area" x1="0" x2="0" y1="0" y2="1">
+                      <stop
+                        offset="0"
+                        stop-color="#65b99a"
+                        stop-opacity=".28"
+                      />
+                      <stop offset="1" stop-color="#65b99a" stop-opacity="0" />
+                    </linearGradient>
+                  </defs>
+                  <path
+                    d="M0 125 C28 119 42 121 65 105 S105 94 132 105 S173 122 199 92 S238 71 265 84 S305 99 328 72 S366 59 392 71 S438 82 461 48 S498 54 520 29 L520 170 L0 170Z"
+                    fill="url(#area)"
+                  />
+                  <path
+                    d="M0 125 C28 119 42 121 65 105 S105 94 132 105 S173 122 199 92 S238 71 265 84 S305 99 328 72 S366 59 392 71 S438 82 461 48 S498 54 520 29"
+                    fill="none"
+                    stroke="#278267"
+                    stroke-width="3.5"
+                    stroke-linecap="round"
+                    vector-effect="non-scaling-stroke"
+                  />
+                  <circle
+                    cx="461"
+                    cy="48"
+                    r="5"
+                    fill="#fff"
+                    stroke="#278267"
+                    stroke-width="3"
+                    vector-effect="non-scaling-stroke"
+                  />
+                </svg>
+                <div
+                  class="absolute bottom-0 left-0 right-0 flex justify-between text-[10px] font-semibold text-[#8d9c97]"
+                >
+                  <span>Morning</span><span>Midday</span><span>Evening</span>
+                </div>
+              </div>
+            </div>
+            <div class="mt-4 grid grid-cols-2 gap-3">
+              <div class="rounded-2xl border border-line p-4">
+                <div
+                  class="flex items-center gap-2 text-xs font-semibold text-muted"
+                >
+                  <span
+                    class="grid h-7 w-7 place-items-center rounded-xl bg-[#e8f3ed] text-leaf"
+                    >♥</span
+                  >
+                  Heart rate
+                </div>
+                <p class="mt-3 text-sm font-bold">A moment in time</p>
+              </div>
+              <div class="rounded-2xl border border-line p-4">
+                <div
+                  class="flex items-center gap-2 text-xs font-semibold text-muted"
+                >
+                  <span
+                    class="grid h-7 w-7 place-items-center rounded-xl bg-[#e8f3ed] text-leaf"
+                    >↗</span
+                  >
+                  Movement
+                </div>
+                <p class="mt-3 text-sm font-bold">Patterns over time</p>
+              </div>
+            </div>
+          </div>
+          <div class="hero-notes">
+            <div
+              class="m-5 float-note note-top hidden items-center gap-3 rounded-2xl border border-white bg-white/95 px-4 py-3 shadow-card sm:flex"
+            >
+              <span
+                class="grid h-9 w-9 place-items-center rounded-xl bg-mint text-lg text-leaf"
+                >✳</span
+              ><span
+                ><b class="block text-xs">Small signals</b
+                ><span class="text-[11px] text-muted"
+                  >Made easier to explore</span
+                ></span
+              >
+            </div>
+            <div
+              class="m-5 float-note note-bottom hidden items-center gap-3 rounded-2xl border border-white bg-white/95 px-4 py-3 shadow-card sm:flex"
+            >
+              <span
+                class="grid h-9 w-9 place-items-center rounded-xl bg-[#f1ede4] text-lg text-[#897447]"
+                >⌁</span
+              ><span
+                ><b class="block text-xs">Human context</b
+                ><span class="text-[11px] text-muted"
+                  >Always part of the picture</span
+                ></span
+              >
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="border-y border-line bg-white/65">
+        <div
+          class="mx-auto grid max-w-7xl gap-4 px-5 py-6 text-sm sm:grid-cols-3 sm:px-8 lg:px-12"
+        >
+          <div class="flex items-center gap-3">
+            <span class="step-icon">01</span
+            ><span class="font-semibold">Explore approachable sensors</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="step-icon">02</span
+            ><span class="font-semibold">Make data easier to read</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <span class="step-icon">03</span
+            ><span class="font-semibold">Keep people in the picture</span>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="approach"
+        class="scroll-mt-24 mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
+      >
+        <div class="grid gap-12 lg:grid-cols-[.8fr_1.2fr] lg:gap-20">
+          <div>
+            <p class="eyebrow">The idea behind Viora</p>
+            <h2 class="section-title mt-4">
+              Numbers are easy.<br /><span class="serif-accent"
+                >Meaning takes care.</span
+              >
+            </h2>
+          </div>
+          <div class="max-w-2xl self-end">
+            <p class="text-lg leading-8 text-muted">
+              We encounter more health and activity information than ever, yet a
+              number on its own can be hard to make sense of. Viora is a project
+              exploring how accessible hardware and clear explanations might
+              help people learn about everyday wellness.
+            </p>
+            <p class="mt-5 text-base leading-7 text-muted">
+              We’re starting with two small DIY devices, pairing hands-on
+              experimentation with a simple, human-centered way to share what we
+              learn.
+            </p>
+          </div>
+        </div>
+        <div class="mt-16 grid gap-4 md:grid-cols-3">
+          <article class="value-card">
+            <span class="value-icon bg-[#e5f3eb] text-leaf">⌕</span>
+            <p
+              class="mt-8 text-xs font-bold uppercase tracking-[.14em] text-leaf"
+            >
+              Understand
+            </p>
+            <h3 class="mt-2 font-display text-xl font-bold">
+              Clarity over complexity
+            </h3>
+            <p class="mt-3 text-sm leading-6 text-muted">
+              Present everyday wellness ideas in plain language, with useful
+              context instead of intimidating jargon.
+            </p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon bg-[#f0eee5] text-[#8a7443]">⌁</span>
+            <p
+              class="mt-8 text-xs font-bold uppercase tracking-[.14em] text-[#8a7443]"
+            >
+              Experiment
+            </p>
+            <h3 class="mt-2 font-display text-xl font-bold">Learn by making</h3>
+            <p class="mt-3 text-sm leading-6 text-muted">
+              Use approachable components to explore how sensing, software, and
+              careful design can work together.
+            </p>
+          </article>
+          <article class="value-card">
+            <span class="value-icon bg-[#e9eef8] text-[#5b6fa2]">◎</span>
+            <p
+              class="mt-8 text-xs font-bold uppercase tracking-[.14em] text-[#5b6fa2]"
+            >
+              Respect
+            </p>
+            <h3 class="mt-2 font-display text-xl font-bold">
+              People first, always
+            </h3>
+            <p class="mt-3 text-sm leading-6 text-muted">
+              Treat readings as one part of a person’s story, and communicate
+              the limits of a prototype clearly.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section id="devices" class="devices-section scroll-mt-20">
+        <div class="devices-inner">
+          <div class="devices-heading">
+            <div>
+              <p class="eyebrow">The first experiments</p>
+              <h2 class="section-title mt-4">
+                Built small.<br /><span class="serif-accent"
+                  >Designed to teach.</span
+                >
+              </h2>
+            </div>
+            <p class="devices-intro">
+              Two simple sensor projects are the starting point. Each is a
+              learning prototype, not a medical device.
+            </p>
+          </div>
+          <div class="device-grid">
+            <article class="device-card">
+              <div class="device-visual heart-visual">
+                <div class="device-tag">
+                  <span class="status-dot"></span> Prototype concept
+                </div>
+                <div class="sensor-board board-heart">
+                  <div class="board-hole hole-a"></div>
+                  <div class="board-hole hole-b"></div>
+                  <div class="sensor-chip"><span></span></div>
+                  <div class="board-label">MAX30100</div>
+                  <div class="board-pins"></div>
+                </div>
+                <div class="pulse-ring ring-one"></div>
+                <div class="pulse-ring ring-two"></div>
+                <div class="heart-spark">♥</div>
+                <div class="board-caption">ESP32 + optical sensor</div>
+              </div>
+              <div class="device-copy">
+                <div class="device-heading-row">
+                  <div>
+                    <p class="device-kicker">01 · Heart rate</p>
+                    <h3 class="device-title">A pulse, made visible.</h3>
+                  </div>
+                  <span class="card-number">01</span>
+                </div>
+                <p class="device-description">
+                  An ESP32 paired with a MAX30100 sensor explores optical pulse
+                  readings. In the planned demo, a finger rests gently on the
+                  sensor while the device gathers a reading.
+                </p>
+                <div class="device-pills">
+                  <span class="pill">ESP32</span
+                  ><span class="pill">MAX30100</span
+                  ><span class="pill">Finger sensor</span>
+                </div>
+                <div class="learning-focus">
+                  <span>Learning focus</span> Sensor setup, signal quality, and
+                  responsible interpretation.
+                </div>
+              </div>
+            </article>
+            <article class="device-card">
+              <div class="device-visual step-visual">
+                <div class="device-tag">
+                  <span class="status-dot"></span> Prototype concept
+                </div>
+                <div class="path-dash path-one"></div>
+                <div class="path-dash path-two"></div>
+                <div class="step-mark mark-one">1</div>
+                <div class="step-mark mark-two">2</div>
+                <div class="step-mark mark-three">3</div>
+                <div class="sensor-board board-pedometer">
+                  <div class="board-hole hole-a"></div>
+                  <div class="board-hole hole-b"></div>
+                  <div class="sensor-chip chip-square"><span></span></div>
+                  <div class="board-label">BMI160</div>
+                  <div class="board-pins"></div>
+                </div>
+                <div class="device-tag tag-bottom">ESP32 + motion sensor</div>
+              </div>
+              <div class="device-copy">
+                <div class="device-heading-row">
+                  <div>
+                    <p class="device-kicker">02 · Pedometer</p>
+                    <h3 class="device-title">Movement, one step at a time.</h3>
+                  </div>
+                  <span class="card-number">02</span>
+                </div>
+                <p class="device-description">
+                  An ESP32 and BMI160 motion sensor explore how movement
+                  patterns can be counted as steps. The planned demo carries the
+                  device in a pocket during a short walk.
+                </p>
+                <div class="device-pills">
+                  <span class="pill">ESP32</span><span class="pill">BMI160</span
+                  ><span class="pill">Pocket carried</span>
+                </div>
+                <div class="learning-focus">
+                  <span>Learning focus</span> Motion sensing, step detection,
+                  and real-world variation.
+                </div>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section
+        id="impact"
+        class="scroll-mt-20 mx-auto max-w-7xl px-5 py-24 sm:px-8 sm:py-32 lg:px-12"
+      >
+        <div class="grid items-center gap-14 lg:grid-cols-[1fr_.9fr]">
+          <div>
+            <p class="eyebrow">Why this work matters</p>
+            <h2 class="section-title mt-4">
+              Health tech can feel<br /><span class="serif-accent"
+                >more human.</span
+              >
+            </h2>
+            <p class="mt-6 max-w-xl text-base leading-8 text-muted">
+              Viora aims to make wellness technology feel less distant: easier
+              to explore, easier to learn from, and more honest about what a
+              sensor can tell us.
+            </p>
+            <div class="mt-8 space-y-4">
+              <div class="impact-row">
+                <span class="impact-check">✓</span
+                ><span
+                  ><b>Make learning hands-on</b
+                  ><small
+                    >Show how everyday sensing can be built and explored.</small
+                  ></span
+                >
+              </div>
+              <div class="impact-row">
+                <span class="impact-check">✓</span
+                ><span
+                  ><b>Make information approachable</b
+                  ><small
+                    >Explain concepts without making people decode a
+                    dashboard.</small
+                  ></span
+                >
+              </div>
+              <div class="impact-row">
+                <span class="impact-check">✓</span
+                ><span
+                  ><b>Encourage thoughtful use</b
+                  ><small
+                    >Pair curiosity with context, privacy, and clear
+                    limitations.</small
+                  ></span
+                >
+              </div>
+            </div>
+          </div>
+          <div
+            class="roadmap-card relative overflow-hidden rounded-[2rem] bg-ink p-7 text-white shadow-soft sm:p-10"
+          >
+            <div
+              class="absolute -right-20 -top-20 h-64 w-64 rounded-full border border-white/10"
+            ></div>
+            <div
+              class="absolute -right-8 -top-8 h-40 w-40 rounded-full border border-white/10"
+            ></div>
+            <p
+              class="relative text-xs font-bold uppercase tracking-[.16em] text-[#a8d8c3]"
+            >
+              A thoughtful path forward
+            </p>
+            <h3
+              class="relative mt-3 max-w-sm font-display text-3xl font-semibold leading-tight tracking-[-.04em]"
+            >
+              From hands-on experiments to helpful context.
+            </h3>
+            <div class="relative mt-9 space-y-0">
+              <div class="roadmap-item">
+                <span class="roadmap-step">01</span
+                ><span
+                  ><b>Explore the prototypes</b
+                  ><small
+                    >Learn what the sensors can reliably capture.</small
+                  ></span
+                ><em>Starting point</em>
+              </div>
+              <div class="roadmap-item">
+                <span class="roadmap-step">02</span
+                ><span
+                  ><b>Connect and explain</b
+                  ><small
+                    >Present readings with plain-language context.</small
+                  ></span
+                ><em>Planned</em>
+              </div>
+              <div class="roadmap-item">
+                <span class="roadmap-step">03</span
+                ><span
+                  ><b>Explore conversational AI</b
+                  ><small
+                    >Support general wellness learning responsibly.</small
+                  ></span
+                ><em>Future</em>
+              </div>
+            </div>
+            <p
+              class="relative mt-7 border-t border-white/15 pt-5 text-xs leading-5 text-white/60"
+            >
+              Future features are ideas in development. This page does not
+              collect sensor data.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="px-5 pb-24 sm:px-8 sm:pb-32 lg:px-12">
+        <div
+          class="mx-auto max-w-7xl overflow-hidden rounded-[2rem] border border-[#dce9e2] bg-white px-6 py-9 shadow-card sm:px-10 sm:py-10"
+        >
+          <div class="flex flex-col gap-5 sm:flex-row sm:items-start">
+            <span
+              class="grid h-12 w-12 shrink-0 place-items-center rounded-2xl bg-[#fff3df] text-xl text-[#a87929]"
+              >i</span
+            >
+            <div>
+              <p class="font-display text-lg font-bold">
+                A note on health and safety
+              </p>
+              <p class="mt-2 max-w-4xl text-sm leading-7 text-muted">
+                Viora is an educational wellness project. Its prototypes and
+                information are not intended to diagnose, treat, or prevent any
+                condition, and are not a substitute for professional medical
+                advice. Prototype sensor readings may be inaccurate; speak with
+                a qualified healthcare professional about health concerns.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="border-t border-line bg-white/60">
+      <div
+        class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-7 text-sm text-muted sm:flex-row sm:items-center sm:justify-between sm:px-8 lg:px-12"
+      >
+        <a
+          href="#top"
+          class="flex items-center gap-2 font-display font-extrabold tracking-[-.05em] text-ink"
+          ><span
+            class="grid h-8 w-8 place-items-center rounded-xl bg-ink text-sm text-white"
+            >v</span
+          >
+          viora<span class="text-leaf">.</span></a
+        >
+        <p>Curiosity, care, and a clearer view of everyday wellness.</p>
+        <p class="footer-credit">
+          Designed and developed by <span>Debangsu Jash</span> · Lodha World
+          School, Palava, Dombivli (East)
+        </p>
+        <p class="text-xs">
+          © <span id="year"></span> Viora · An independent project
+        </p>
+      </div>
+    </footer>
+
+    <div class="chat-widget">
+      <section
+        id="viora-chat-panel"
+        class="chat-panel"
+        role="dialog"
+        aria-modal="false"
+        aria-labelledby="chat-title"
+        hidden
+      >
+        <header class="chat-header">
+          <div class="chat-brand">
+            <span class="chat-avatar" aria-hidden="true">
+              <svg viewBox="0 0 32 32" fill="none">
+                <path
+                  d="M5 17h5l3-8 5.2 15 3.1-8H27"
+                  stroke="currentColor"
+                  stroke-width="2.3"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                />
+              </svg>
+            </span>
+            <span
+              ><strong id="chat-title">Viora assistant</strong
+              ><small>Wellness, with context</small></span
+            >
+          </div>
+          <div class="chat-header-actions">
+            <span class="chat-preview-label">PREVIEW</span>
+            <button
+              id="chat-close"
+              class="chat-close"
+              type="button"
+              aria-label="Close chat"
+            >
+              <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path
+                  d="m6 6 12 12M18 6 6 18"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                />
+              </svg>
+            </button>
+          </div>
+        </header>
+        <div
+          id="chat-messages"
+          class="chat-messages"
+          role="log"
+          aria-live="polite"
+          aria-relevant="additions text"
+        >
+          <div class="chat-message assistant-message">
+            <span class="message-avatar" aria-hidden="true">v</span>
+            <div class="message-content">
+              <p>
+                Hi, I’m Viora. I can help explain the project and general
+                wellness concepts. I can’t diagnose or replace a healthcare
+                professional.
+              </p>
+              <time>Just now</time>
+            </div>
+          </div>
+          <div class="chat-prompts" aria-label="Suggested questions">
+            <button type="button" data-chat-prompt="What is Viora?">
+              What is Viora?
+            </button>
+            <button
+              type="button"
+              data-chat-prompt="How do the sensor prototypes work?"
+            >
+              How do the sensors work?
+            </button>
+          </div>
+        </div>
+        <form id="chat-form" class="chat-composer">
+          <label class="sr-only" for="chat-input">Message Viora</label>
+          <textarea
+            id="chat-input"
+            name="message"
+            rows="1"
+            maxlength="1200"
+            placeholder="Ask a wellness question…"
+            required
+          ></textarea>
+          <button
+            id="chat-send"
+            class="chat-send"
+            type="submit"
+            aria-label="Send message"
+          >
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path
+                d="M5 12h14m-6-6 6 6-6 6"
+                stroke="currentColor"
+                stroke-width="1.8"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              />
+            </svg>
+          </button>
+        </form>
+        <p class="chat-disclaimer">
+          General wellness information only · Not medical advice
+        </p>
+      </section>
+      <button
+        id="chat-launcher"
+        class="chat-launcher"
+        type="button"
+        aria-label="Open Viora assistant"
+        aria-expanded="false"
+        aria-controls="viora-chat-panel"
+      >
+        <svg
+          class="chat-launch-icon"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H5l1.8-3.1A7.5 7.5 0 1 1 20 11.5Z"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linejoin="round"
+          />
+          <path
+            d="M9 11.5h.01M12.5 11.5h.01M16 11.5h.01"
+            stroke="currentColor"
+            stroke-width="2.3"
+            stroke-linecap="round"
+          />
+        </svg>
+        <svg
+          class="chat-launch-close"
+          viewBox="0 0 24 24"
+          fill="none"
+          aria-hidden="true"
+        >
+          <path
+            d="m6 6 12 12M18 6 6 18"
+            stroke="currentColor"
+            stroke-width="1.8"
+            stroke-linecap="round"
+          />
+        </svg>
+      </button>
+    </div>
+    <script>
+      const fallbackChatHistory = [];
+
+      function addFallbackMessage(role, text) {
+        const message = document.createElement("div");
+        message.className = `chat-message ${role === "user" ? "user-message" : "assistant-message"}`;
+        const content = document.createElement("div");
+        content.className = "message-content";
+        const paragraph = document.createElement("p");
+        paragraph.textContent = text;
+        content.append(paragraph);
+        message.append(content);
+        const messages = document.querySelector("#chat-messages");
+        messages.append(message);
+        messages.scrollTop = messages.scrollHeight;
+        return message;
+      }
+
+      document.addEventListener("click", (event) => {
+        if (window.vioraChatInitialized) return;
+
+        const launcher = event.target.closest("#chat-launcher");
+        const closeButton = event.target.closest("#chat-close");
+        const panel = document.querySelector("#viora-chat-panel");
+
+        if (launcher) {
+          panel.hidden = !panel.hidden;
+          launcher.setAttribute("aria-expanded", String(!panel.hidden));
+          launcher.setAttribute(
+            "aria-label",
+            panel.hidden ? "Open Viora assistant" : "Close Viora assistant",
+          );
+          if (!panel.hidden) document.querySelector("#chat-input").focus();
+        } else if (closeButton) {
+          panel.hidden = true;
+          document
+            .querySelector("#chat-launcher")
+            .setAttribute("aria-expanded", "false");
+          document.querySelector("#chat-launcher").focus();
+        }
+      });
+
+      document.querySelector("#chat-form").addEventListener("submit", async (event) => {
+        if (window.vioraChatInitialized) return;
+        event.preventDefault();
+
+        const input = document.querySelector("#chat-input");
+        const message = input.value.trim();
+        if (!message) return;
+
+        document.querySelector(".chat-prompts")?.remove();
+        addFallbackMessage("user", message);
+        input.value = "";
+        input.disabled = true;
+        const sendButton = document.querySelector("#chat-send");
+        sendButton.disabled = true;
+        const waiting = addFallbackMessage("assistant", "Thinking…");
+
+        try {
+          const response = await fetch("/api/chat", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ message, history: fallbackChatHistory.slice(-10) }),
+          });
+          const data = await response.json();
+          if (!response.ok) throw new Error(data.error || "The assistant could not respond.");
+          waiting.remove();
+          addFallbackMessage("assistant", data.reply);
+          fallbackChatHistory.push(
+            { role: "user", content: message },
+            { role: "assistant", content: data.reply },
+          );
+        } catch (error) {
+          waiting.remove();
+          const hint = location.protocol === "file:"
+            ? "Open Viora through its Vite server (npm run dev) to connect Gemini."
+            : error.message || "Check that the Viora server is running, then try again.";
+          addFallbackMessage("assistant", hint);
+        } finally {
+          input.disabled = false;
+          sendButton.disabled = false;
+          input.focus();
+        }
+      });
+    </script>
+    <script type="module" src="./src/main.js"></script>
+  </body>
+</html>
